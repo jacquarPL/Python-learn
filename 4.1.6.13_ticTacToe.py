@@ -56,7 +56,7 @@ def make_list_of_free_fields(board):
 #|       |       |       |
 #+-------+-------+-------+
 def victory_for(board, sign):
-    win = (0,0,0,1,0,2,1,0,1,1,1,2,2,0,2,1,2,2,0,0,1,0,2,0,0,1,1,1,2,1,0,2,1,2,2,2,0,0,1,1,2,2,0,2,1,1,2,0)
+    win = (0,0,0,1,0,2,1,0,1,1,1,2,2,0,2,1,2,2,0,0,1,0,2,0,0,1,1,1,2,1,0,2,1,2,2,2,0,0,1,1,2,2,0,2,1,1,2,0) #maska ustawien wygrywajacych 8 kombinacji
     for i in range(0,48,6):
         if board[win[i]][win[i+1]] == sign and board[win[i+2]][win[i+3]] == sign and board[win[i+4]][win[i+5]] == sign:
             return True
