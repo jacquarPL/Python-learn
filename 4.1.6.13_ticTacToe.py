@@ -15,13 +15,15 @@ def display_board(board):
 
 
 def enter_move(board):
-    nr = int(input("Podaj numer wolnego pola (1-9):"))
-    if nr > 0 and nr < 10:
-        row = (nr-1) // 3
-        col = (nr-1) % 3
-        board[row][col] = "o"
-    else:
-        print("Błędne dane!!!"
+    while True:
+        nr = int(input("Podaj numer wolnego pola (1-9):"))
+        if nr > 0 and nr < 10 and nr in(make_list_of_free_fields(board)):
+            row = (nr-1) // 3
+            col = (nr-1) % 3
+            board[row][col] = "o"
+            break
+        else:
+            print("Błędne dane!!!")
 #
 # Funkcja, która przyjmuje parametr odzwierciedlający biężący stan tablicy,
 # prosi użytkownika o wykonanie ruchu, 
@@ -30,6 +32,11 @@ def enter_move(board):
 
 def make_list_of_free_fields(board):
     free_fields = []
+    for rows in board:
+        for field in rows:
+            if field != "o" and field != "x":
+                free_fields.append(field)
+    return free_fields
     
 #
 # Funkcja, która przegląda tablicę i tworzy listę wszystkich wolnych pól; 
@@ -37,19 +44,29 @@ def make_list_of_free_fields(board):
 #
 
 def victory_for(board, sign):
-    a=1
+    return False
 #
 # Funkcja, która dokonuje analizy stanu tablicy w celu sprawdzenia
 # czy użytkownik/gracz stosujący "O" lub "X" wygrał rozgrywkę.
 #
 
 def draw_move(board):
-    a=1
+    from random import randrange
+    free_fields = make_list_of_free_fields(board)
+    nr = free_fields[randrange(len(free_fields))]
+    row = (nr-1) // 3
+    col = (nr-1) % 3
+    board[row][col] = "x"
 #
 # Funkcja, która wykonuje ruch za komputer i aktualizuje tablicę.
 #
 
 board = [[1,2,3],[4,"x",6],[7,8,9]]
-display_board(board)
-enter_move(board)
-display_board(board)
+for i in range(4):
+    display_board(board)
+    enter_move(board)
+    draw_move(board)
+    display_board(board)
+    #print(make_list_of_free_fields(board))
+else:
+    print("REMIS")
