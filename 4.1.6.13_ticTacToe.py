@@ -5,13 +5,13 @@ def display_board(board):
 # i wyświetla go w oknie konsoli.
 #    
     for rows in board:
-        print("+-------+-------+-------+")
-        print("|       |       |       |")
+        print("+-------" *3, "+", sep="")
+        print("|       " * 3, "|", sep="")
         for field in rows:
             print("|  ",field, "  ", end="")
         print("|")
-        print("|       |       |       |")
-    print("+-------+-------+-------+")
+        print("|       " * 3, "|", sep="")
+    print("+-------" *3, "+", sep="")
 
 
 def enter_move(board):
